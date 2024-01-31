@@ -2,8 +2,11 @@
 
 namespace App\Exceptions;
 
+
+use Illuminate\Validation\ValidationException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -30,8 +33,11 @@ class Handler extends ExceptionHandler
     }
     public function render($request, Throwable $exception)
     {
+
+
         // Manejo personalizado de ValidationException
         if ($exception instanceof ValidationException) {
+
             return response()->json([
                 "error" => collect($exception->errors())->map(function ($message, $field) use ($exception) {
                     return [
