@@ -21,8 +21,11 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
-            //
+        "data.attributes.name"=>"required",
+            "data.attributes.email"=>"required|email",
+            "data.attributes.password"=>"required|min:8|confirmed"
         ];
     }
 }

@@ -34,6 +34,13 @@ class LoginController extends Controller
         return response()->json([
             "plain-text-token"=>$token
         ]);
+    }
+
+    public function register(UserRequest $request){
+        $user  = new User($request->input("data.attributes"));
+        $user->password = bcrypt($user->password);
+        $user->save();
+        return new UserRequest($user);
 
     }
 }
