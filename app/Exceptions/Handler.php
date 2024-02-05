@@ -42,7 +42,7 @@ class Handler extends ExceptionHandler
                 "error" => collect($exception->errors())->map(function ($message, $field) use ($exception) {
                     return [
                         'status' => '422',
-                        'title' => 'Validation Error',
+                        'title' => __('Validation Error'),
                         'details' => $message[0],
                         'source' => [
                             'pointer' => '/data/attributes/' . $field
